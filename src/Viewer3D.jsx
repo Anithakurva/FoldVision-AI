@@ -1,16 +1,19 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 
-function Cube() {
+function Cube({ image }) {
+  const texture = image ? useLoader(THREE.TextureLoader, image) : null;
+
   return (
     <mesh>
       <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color="#c89b6d" />
+      <meshStandardMaterial map={texture} color="white" />
     </mesh>
   );
 }
 
-function Viewer3D() {
+function Viewer3D({ image }) {
   return (
     <div
       style={{
@@ -22,10 +25,10 @@ function Viewer3D() {
       }}
     >
       <Canvas camera={{ position: [3, 3, 3] }}>
-        <ambientLight intensity={1} />
+        <ambientLight intensity={0.8} />
         <directionalLight position={[5, 5, 5]} />
 
-        <Cube />
+        <Cube image={image} />
 
         <OrbitControls />
       </Canvas>

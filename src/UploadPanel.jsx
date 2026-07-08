@@ -1,18 +1,19 @@
 import { useState } from "react";
-
-function UploadPanel() {
+ 
+function UploadPanel({ setImage }) { 
   const [preview, setPreview] = useState(null);
 
   const handleUpload = (event) => {
     const file = event.target.files[0];
 
     if (file) {
-      const imageURL = URL.createObjectURL(file);
-      setPreview(imageURL);
-    }
-  };
+  const imageURL = URL.createObjectURL(file);
+  setPreview(imageURL);
+  setImage(imageURL);
+}
+};
 
-  return (
+return (
     <div
       style={{
         width: "35%",
@@ -62,4 +63,4 @@ function UploadPanel() {
   );
 }
 
-export default UploadPanel;
+export default UploadPanel; 

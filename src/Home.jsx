@@ -6,7 +6,7 @@ import Viewer3D from "./Viewer3D";
 function Home() {
   const [image, setImage] = useState(null);
 
-  return (
+  return ( 
     <div>
       <Navbar />
 
@@ -20,8 +20,8 @@ function Home() {
           padding: "20px",
         }}
       >
-        <UploadPanel />
-        <Viewer3D />
+        <UploadPanel setImage={setImage} />
+        <Viewer3D image={image} />
       </div>
     </div>
   );

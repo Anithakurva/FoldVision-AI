@@ -1,19 +1,8 @@
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import * as THREE from "three";
+import BoxNet from "./BoxNet";
 
-function Cube({ image }) {
-  const texture = image ? useLoader(THREE.TextureLoader, image) : null;
-
-  return (
-    <mesh>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial map={texture} color="white" />
-    </mesh>
-  );
-}
-
-function Viewer3D({ image }) {
+function Viewer3D({ fold }) {
   return (
     <div
       style={{
@@ -24,11 +13,11 @@ function Viewer3D({ image }) {
         overflow: "hidden",
       }}
     >
-      <Canvas camera={{ position: [3, 3, 3] }}>
+      <Canvas camera={{ position: [4, 4, 4] }}>
         <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
 
-        <Cube image={image} />
+        <BoxNet fold={fold} />
 
         <OrbitControls />
       </Canvas>

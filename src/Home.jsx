@@ -8,7 +8,7 @@ function Home() {
   const [fold, setFold] = useState(false);
 
   return (
-    <div>
+    <div> 
       <Navbar />
 
       <h1 style={{ textAlign: "center" }}>FoldVision AI</h1>
@@ -29,7 +29,7 @@ function Home() {
             cursor: "pointer",
           }}
         >
-          {fold ? "Unfold Box" : "Fold Box"}
+          {fold ? "Fold Box" : "UnFold Box"}
         </button>
       </div>
 

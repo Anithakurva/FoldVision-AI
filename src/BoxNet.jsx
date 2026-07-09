@@ -1,7 +1,11 @@
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
 import { useRef } from "react";
+import * as THREE from "three";
 
-function BoxNet({ fold }) {
+function BoxNet({ fold, image}) { 
+    const texture = image
+  ? useLoader(THREE.TextureLoader, image)
+  : null;
   const group = useRef();
 
   useFrame(() => {
@@ -16,7 +20,10 @@ function BoxNet({ fold }) {
       {/* Base */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[2, 0.1, 2]} />
-        <meshStandardMaterial color="orange" />
+        <meshStandardMaterial 
+  map={texture}
+  color={texture ? "white" : "orange"}
+/>
       </mesh>
 
       {/* Front Wall */}
@@ -25,7 +32,10 @@ function BoxNet({ fold }) {
         rotation={[fold ? Math.PI / 2 : 0, 0, 0]}
       >
         <boxGeometry args={[2, 0.1, 2]} />
-        <meshStandardMaterial color="red" />
+        <meshStandardMaterial 
+  map={texture}
+  color={texture ? "white" : "red"}
+/>
       </mesh>
 
       {/* Back Wall */}
@@ -34,7 +44,10 @@ function BoxNet({ fold }) {
         rotation={[fold ? -Math.PI / 2 : 0, 0, 0]}
       >
         <boxGeometry args={[2, 0.1, 2]} />
-        <meshStandardMaterial color="blue" />
+        <meshStandardMaterial 
+  map={texture}
+  color={texture ? "white" : "blue"}
+/>
       </mesh>
 
       {/* Left Wall */}
@@ -43,7 +56,10 @@ function BoxNet({ fold }) {
         rotation={[0, fold ? Math.PI / 2 : 0, 0]}
       >
         <boxGeometry args={[0.1, 2, 2]} />
-        <meshStandardMaterial color="green" />
+        <meshStandardMaterial 
+  map={texture}
+  color={texture ? "white" : "green"}
+/>
       </mesh>
 
       {/* Right Wall */}
@@ -52,7 +68,10 @@ function BoxNet({ fold }) {
         rotation={[0, fold ? -Math.PI / 2 : 0, 0]}
       >
         <boxGeometry args={[0.1, 2, 2]} />
-        <meshStandardMaterial color="yellow" />
+        <meshStandardMaterial 
+  map={texture}
+  color={texture ? "white" : "yellow"}
+/>
       </mesh>
 
     </group>
